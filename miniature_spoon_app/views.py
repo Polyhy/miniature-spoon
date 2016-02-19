@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, flash, g, session, redirect, url_for, abort
+from flask import Blueprint, render_template
 from jinja2 import TemplateNotFound
 
 pages = Blueprint('pages', __name__, template_folder='templates')
