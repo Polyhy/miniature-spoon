@@ -11,3 +11,5 @@ app.register_blueprint(pages)
 
 from miniature_spoon_app.link.views import links as linkModule
 app.register_blueprint(linkModule)
+
+db.metadata.create_all()
