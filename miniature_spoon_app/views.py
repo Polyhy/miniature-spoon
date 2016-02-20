@@ -1,13 +1,20 @@
-from flask import Blueprint, render_template
-from jinja2 import TemplateNotFound
+from flask import render_template, redirect
+from sqlalchemy.orm import scoped_session
 
-pages = Blueprint('pages', __name__, template_folder='templates')
+from miniature_spoon_app import app, SessionFactory
+from link.model import Link
 
-@pages.route('/', methods = ['GET'], defaults={'page': 'index'})
 
-@pages.route('/<page>',  methods = ['GET'])
-def show(page):
-    try:
-        return render_template('pages/%s.html' % page)
-    except TemplateNotFound:
+@app.route('/', methods=['GET'])
+def show():
+    return render_template('pages/index.html')
+
+@app.route('/<token>', methods=['GET'])
+def redirectShortURL(token):
+    session = scoped_session(SessionFactory)
+    s = session.query(Link).filter(Link.shortLink == token)
+    if s.count() > 0:
+        url = s[0].originalLink
+        return redirect(url, 302)
+    else:
         return render_template('404.html')
