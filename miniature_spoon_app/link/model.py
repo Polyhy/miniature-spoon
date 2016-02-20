@@ -1,16 +1,17 @@
-from miniature_spoon_app import db
 from datetime import datetime
-from sqlalchemy import event
-from sqlalchemy import DDL
+from sqlalchemy import event, DDL
+from sqlalchemy import Column, Integer, String, DateTime
+
+from miniature_spoon_app import Base
 
 
-class Link(db.Model):
-    id = db.Column(db.Integer,
-                   db.Sequence('link_id_seq', start=2400000, increment=1),
-                   primary_key=True)
-    createAt = db.Column(db.DateTime)
-    originalLink = db.Column(db.String(255))
-    shortLink = db.Column(db.String(6))
+class Link(Base):
+    __tablename__ = "link"
+
+    id = Column(Integer, primary_key=True)
+    createAt = Column(DateTime)
+    originalLink = Column(String(255))
+    shortLink = Column(String(6))
 
     def __init__(self, link, shortLink):
         try:
@@ -22,6 +23,7 @@ class Link(db.Model):
         self.createAt = datetime.now()
         self.originalLink = link
         self.shortLink = shortLink
+
 
 event.listen(Link.__table__,
              "after_create",
