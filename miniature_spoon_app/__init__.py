@@ -14,9 +14,8 @@ SessionFactory = sessionmaker(autocommit=False, autoflush=True, bind=engine,
 Base = declarative_base()
 
 from miniature_spoon_app.link.views import links as linkModule
-from miniature_spoon_app.views import pages
+import miniature_spoon_app.views
 
-app.register_blueprint(pages)
 app.register_blueprint(linkModule)
 
 Base.metadata.create_all(bind=engine)
