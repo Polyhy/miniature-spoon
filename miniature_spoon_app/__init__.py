@@ -9,9 +9,8 @@ app.config.from_object('config')
 # db = SQLAlchemy(app)
 engine = create_engine(app.config["SQLALCHEMY_DATABASE_URI"], echo=True)
 
-SessionFactory = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-session = scoped_session(SessionFactory)
-
+SessionFactory = sessionmaker(autocommit=False, autoflush=True, bind=engine,
+                              expire_on_commit=False)
 Base = declarative_base()
 
 from miniature_spoon_app.link.views import links as linkModule

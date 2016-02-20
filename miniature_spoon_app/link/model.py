@@ -13,16 +13,15 @@ class Link(Base):
     originalLink = Column(String(255))
     shortLink = Column(String(6))
 
-    def __init__(self, link, shortLink):
+    def __init__(self, link):
         try:
             assert isinstance(link, str)
-            assert isinstance(shortLink, str)
         except AssertionError as e:
             raise e
 
         self.createAt = datetime.now()
         self.originalLink = link
-        self.shortLink = shortLink
+        self.shortLink = ""
 
 
 event.listen(Link.__table__,
