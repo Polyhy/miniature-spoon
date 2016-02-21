@@ -1,12 +1,11 @@
 from flask import Flask
 from sqlalchemy import create_engine
-from sqlalchemy.orm import scoped_session, sessionmaker
+from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
 app = Flask(__name__)
 app.config.from_object('config')
 
-# db = SQLAlchemy(app)
 engine = create_engine(app.config["SQLALCHEMY_DATABASE_URI"], echo=True)
 
 SessionFactory = sessionmaker(autocommit=False, autoflush=True, bind=engine,
