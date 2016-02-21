@@ -46,7 +46,9 @@ def postShortURL():
 @links.route('', methods=['GET'])
 def getShortURL():
     requestId = request.args.get("request_id")
-    s = Link.query.filter(Link.id == requestId)
+    session = scoped_session(SessionFactory)
+    s = session.query(Link).filter(Link.id == requestId)
+    session.remove()
     if s.count() > 0:
         link = s[0]
         responseData = {"short_url": request.url_root.encode() + link.shortLink}
