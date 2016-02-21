@@ -19,6 +19,6 @@ def redirectShortURL(token):
         link.click = link.click + 1
         session.commit()
         session.remove()
-        return redirect(url, 302)
+        return redirect("http://www."+url, 302)
     else:
         return render_template('404.html')

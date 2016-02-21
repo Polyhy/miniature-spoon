@@ -1,48 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <style>
-        #input--long-url{
-            width: 500px;
-            font-size: 16px;
-            padding: 4px 6px;
-            border: solid 1px #666;
-        }
-        #btn--short-url{
-            font-size: 16px;
-            padding: 5px;
-        }
-        label[for="long-url"]{
-            margin-bottom: 0px;
-            display: block;
-            font-weight: 600;
-        }
-    </style>
-    <script>
-
-    </script>
-</head>
-<body>
-    <h2>Miniature Spoon</h2>
-    <label for="long-url">Paste your long URL here :</label>
-    <input type="text" name="long-url" id="input--long-url" />
-    <button type="button" id="btn--short-url">Short URL</button>
-    <br/><br/><br/>
-    <hr>
-    <h3>History</h3>
-    <table>
-        <thead>
-            <tr>
-                <td></td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td></td>
-            </tr>
-        </tbody>
-    </table>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Miniature Spoon</title>
+        <script language="JavaScript" type="text/javascript"
+                src="http://kjur.github.io/jsrsasign/jsrsasign-latest-all-min.js"></script>
+        <script src={{url_for('static', filename='js/libs/jquery-1.12.0.min.js')}}></script>
+        <script src={{url_for('static', filename='js/index.js')}}></script>
+        <style>
+            #input--long-url{
+                width: 50%;
+                font-size: 16px;
+                padding: 4px 6px;
+                border: solid 1px #666;
+            }
+            #btn--short-url{
+                font-size: 16px;
+                padding: 4px 6px;
+                background: silver;
+                border: 1px solid black;
+            }
+            label[for="long-url"]{
+                margin-bottom: 0px;
+                display: block;
+                font-weight: 600;
+            }
+            thead td{
+                color: blue;
+                font-weight: bold;
+            }
+            td{
+                padding: 4px 20px 4px 0px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Miniature Spoon</h1>
+        <label for="long-url">Paste your long URL here :</label>
+        <input type="text" name="long-url" id="input--long-url"/>
+        <button type="button" id="btn--short-url">Short URL</button>
+        <div id="result"><p>Short URL : <a href="#"></a></p></div>
+        <br/><br/><br/>
+        <hr>
+        <h3>History</h3>
+        <table>
+            <thead>
+                <tr>
+                    <td>request id</td><td>short URL</td><td></td>
+                </tr>
+            </thead>
+            <tbody id="history"></tbody>
+        </table>
+    </body>
 </html>
