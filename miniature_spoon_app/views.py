@@ -14,7 +14,11 @@ def redirectShortURL(token):
     session = scoped_session(SessionFactory)
     s = session.query(Link).filter(Link.shortLink == token)
     if s.count() > 0:
-        url = s[0].originalLink
+        link = s[0]
+        url = link.originalLink
+        link.click = link.click + 1
+        session.commit()
+        session.remove()
         return redirect(url, 302)
     else:
         return render_template('404.html')

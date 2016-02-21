@@ -12,6 +12,7 @@ class Link(Base):
     createAt = Column(DateTime)
     originalLink = Column(String(255))
     shortLink = Column(String(6))
+    click = Column(Integer)
 
     def __init__(self, link):
         try:
@@ -22,6 +23,7 @@ class Link(Base):
         self.createAt = datetime.now()
         self.originalLink = link
         self.shortLink = ""
+        self.click = 0
 
 
 event.listen(Link.__table__,
