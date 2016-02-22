@@ -1,5 +1,5 @@
 # Miniature Spoon
-Simple link shortner using flask and Maria DB
+Simple link shortner using Flask and MariaDB
 
 #### Installing
 필요한 패키지 설치
@@ -19,6 +19,8 @@ Simple link shortner using flask and Maria DB
 
 <br>
 ## Project Architecture
+
+### Software Stack
 
 ### APIs
 #### POST /v1/link
@@ -65,6 +67,6 @@ HTTP status code 200
 
 | name | type | description |
 | --- | --- | --- |
-| status | string | 삭제 완료 메시지(request {request_id} is deleted) |
+| status | string | 삭제 완료 메시지 (request {request_id} is deleted) |
 
 HTTP status code 200
