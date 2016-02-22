@@ -1,6 +1,6 @@
 from datetime import datetime
 from sqlalchemy import event, DDL
-from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy import Column, Integer, VARBINARY, DateTime
 
 from miniature_spoon_app import Base
 
@@ -10,8 +10,8 @@ class Link(Base):
 
     id = Column(Integer, primary_key=True)
     createAt = Column(DateTime)
-    originalLink = Column(String(255))
-    shortLink = Column(String(6))
+    originalLink = Column(VARBINARY(255))
+    shortLink = Column(VARBINARY(6))
     click = Column(Integer)
 
     def __init__(self, link):

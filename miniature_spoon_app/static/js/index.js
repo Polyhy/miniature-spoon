@@ -38,6 +38,9 @@ $(document).ready(function(){
             if (items){
                 var history = JSON.parse(items)
                 history.history.push(data.request_id);
+                while (history.length>5){
+                    history.splice(0, 1)
+                }
                 localStorage.setItem('history', JSON.stringify(history));
             }else {
                 var history = {history: [data.request_id]}
