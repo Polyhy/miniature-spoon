@@ -20,8 +20,6 @@ Simple link shortner using Flask and MariaDB
 <br>
 ## Project Architecture
 
-### Software Stack
-
 ### APIs
 #### POST /v1/link
 **Request Params**
