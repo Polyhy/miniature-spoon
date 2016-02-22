@@ -3,6 +3,7 @@ import miniature_spoon_app as miniatureSpoon
 import unittest
 import tempfile
 import jwt
+import json
 
 
 class LinkTest(unittest.TestCase):
@@ -16,17 +17,31 @@ class LinkTest(unittest.TestCase):
         os.close(self.db_fd)
         os.unlink(miniatureSpoon.app.config['DATABASE'])
 
-    def test_get(self):
-        # rv = self.app.get('/v1/link')
-        # assert 'No entries here so far' in rv.data
-        print("test")
+    def test_shortURL(self):
+        url = 'http://www.facebook.com'
+        requestData = jwt.encode({'link': url}, 'hellominiaturespoon',
+                                 algorithm='HS256')
+        rv = self.app.post('/v1/link', data=requestData)
+        data = json.loads(rv.data)
+        self.assertEqual(rv._status_code, 201, "POST request is failed")
 
-    def test_post(self):
-        # data = jwt.encode({'link': 'naver.com'}, 'hellominiaturespoon', algorithm='HS256')
-        # rv = self.app.post(('/v1/link', data))
-        # print(rv.data)
-        # assert 'No entries here so far' in rv.data
-        print("test")
+        rv2 = self.app.get('/v1/link?request_id=' + str(data['request_id']))
+        data2 = json.loads(rv2.data)
+        self.assertEqual(rv2._status_code, 200, "GET request is failed")
+        self.assertEqual(data['short_url'], data2['short_url'],
+                         "Get short url by request id is failed")
+
+        rv3 = self.app.get(str(data['short_url']), follow_redirects=False)
+        self.assertEqual(rv3._status_code, 302,
+                         "Can not redirect to original link with short link")
+        self.assertEqual(rv3.location, url,
+                         "Can not redirect to original link with short link")
+
+        requestData2 = jwt.encode({'request_id': data['request_id']},
+                                  'hellominiaturespoon',  algorithm='HS256')
+        rv4 = self.app.delete('/v1/link', data=requestData2)
+        self.assertEqual(rv4._status_code, 200,
+                         "Failed to delete url from db")
 
 
 if __name__ == '__main__':
