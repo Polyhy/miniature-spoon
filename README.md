@@ -68,3 +68,17 @@ HTTP status code 200
 | status | string | 삭제 완료 메시지 (request {request_id} is deleted) |
 
 HTTP status code 200
+
+## DataBase Schema
+
+#### link
+원래 link와 줄어든 URL을 저장하는 테이블
+
+| column | type | description |
+| --- | --- | --- |
+| id | INT(11) | primary key DB에 저장된 각 url의 고유 키, request_id로 사용 |
+| createAt | DATETIME | row가 생성된 날짜 및 시간 |
+| originalLink | VARBINARY(255) | 줄이기 전 원래 link |
+| shortLink | VARBINARY(6) | 줄어든 short link {ServiceURL}/shortLink 형태로 사용 |
+| clink | INT(11) | short link의 방문 횟수를 저장 |
+
