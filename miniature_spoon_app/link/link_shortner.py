@@ -39,7 +39,7 @@ def characterConverter(c):
 def makeMiniature(giant):
     miniature = ""
     if giant == 0:
-        return "0"
+        miniature = "0"
     else:
         while giant > 0:
             piece = numberConverter(giant % BASE)
