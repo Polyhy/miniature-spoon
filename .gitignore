@@ -60,7 +60,7 @@ target/
 #Ipython Notebook
 .ipynb_checkpoints
 
-
+res_for_reademe/
 
 
 .DS_Store
