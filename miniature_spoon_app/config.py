@@ -18,7 +18,8 @@ SQLALCHEMY_DATABASE_URI = "mysql://%s:%s@%s/%s" % (
     DATABASE_USER_ID, DATABASE_USER_PASSWD, DATABASE_ADDR, DATABASE_NAME)
 
 # Redis
-REDIS_PREFIX = os.getenv("REDIS_PREFIX", "short:")
-REDIS_HOST = os.getenv("REDIS_HOST", "localhost")
-REDIS_PORT = int(os.getenv("REDIS_PORT", "6379"))
-REDIS_DB = int(os.getenv("REDIS_DB", "0"))
+REDIS_PREFIX = "short:"
+REDIS_HOST = "localhost"
+REDIS_PORT = "6379"
+REDIS_DB = "0"
+REDIS_URL = "redis://%s:%s"% (REDIS_HOST, REDIS_PORT)
