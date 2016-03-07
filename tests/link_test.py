@@ -11,18 +11,14 @@ from miniature_spoon_app import redis_conn
 
 class LinkTest(unittest.TestCase):
     def setUp(self):
-        self.db_fd, miniatureSpoon.app.config['DATABASE'] = tempfile.mkstemp()
-        miniatureSpoon.app.config['TESTING'] = True
+        self.db_fd, miniatureSpoon.config.DATABASE = tempfile.mkstemp()
+        miniatureSpoon.config.TESTING = True
         self.app = miniatureSpoon.app.test_client()
         miniatureSpoon.declarative_base()
 
     def tearDown(self):
         os.close(self.db_fd)
-        os.unlink(miniatureSpoon.app.config['DATABASE'])
-
-    def test_redis_connection(self):
-        redis_conn.set("test", 1)
-        print redis_conn.get("test")
+        # os.unlink(miniatureSpoon.config.DATABASE)
 
     def test_shortURL(self):
         url = 'http://www.facebook.com'
@@ -45,10 +41,16 @@ class LinkTest(unittest.TestCase):
                          "Can not redirect to original link with short link")
 
         requestData2 = jwt.encode({'request_id': data['request_id']},
-                                  'hellominiaturespoon',  algorithm='HS256')
+                                  'hellominiaturespoon', algorithm='HS256')
         rv4 = self.app.delete('/v1/link', data=requestData2)
         self.assertEqual(rv4._status_code, 200,
                          "Failed to delete url from db")
+
+
+class RedisTest(unittest.TestCase):
+    def test_redis_connection(self):
+        redis_conn.set("test", 1)
+        print redis_conn.get("test")
 
 
 if __name__ == '__main__':

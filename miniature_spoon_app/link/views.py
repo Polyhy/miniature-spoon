@@ -7,7 +7,7 @@ from link_shortner import makeMiniature
 from utils.convertDictToStr import convertDictToStr
 from miniature_spoon_app import SessionFactory
 
-from miniature_spoon_app import app
+from miniature_spoon_app import config
 
 links = Blueprint('links', __name__, url_prefix='/v1/link')
 
@@ -17,7 +17,7 @@ def postShortURL():
     if not request.data:
         return make_response(jsonify({'status': 'body data is none'}), 400)
     bodyData = convertDictToStr(
-        jwt.decode(request.data, app.config['SECRET_KEY'], algorithm=['HS256']))
+        jwt.decode(request.data, config.SECRET_KEY, algorithm=['HS256']))
     if not 'link' in bodyData:
         return make_response(jsonify({'status': 'link is none'}), 400)
     originalLink = bodyData.get('link')
@@ -59,7 +59,7 @@ def deleteShortURL():
     if not request.data:
         return make_response(jsonify({'status': 'body data is none'}), 400)
     bodyData = convertDictToStr(
-        jwt.decode(request.data, app.config['SECRET_KEY'], algorithm=['HS256']))
+        jwt.decode(request.data, config.SECRET_KEY, algorithm=['HS256']))
     if not 'request_id' in bodyData:
         return make_response(jsonify({'status': 'request_id is none'}), 400)
     requestId = bodyData.get('request_id')
