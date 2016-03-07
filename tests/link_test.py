@@ -6,7 +6,6 @@ import jwt
 import os
 
 import miniature_spoon_app as miniatureSpoon
-from miniature_spoon_app import redis_conn
 
 
 class LinkTest(unittest.TestCase):
@@ -45,13 +44,3 @@ class LinkTest(unittest.TestCase):
         rv4 = self.app.delete('/v1/link', data=requestData2)
         self.assertEqual(rv4._status_code, 200,
                          "Failed to delete url from db")
-
-
-class RedisTest(unittest.TestCase):
-    def test_redis_connection(self):
-        redis_conn.set("test", 1)
-        print redis_conn.get("test")
-
-
-if __name__ == '__main__':
-    unittest.main()

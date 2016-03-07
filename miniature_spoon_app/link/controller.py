@@ -1,4 +1,4 @@
-from flask import request, make_response, jsonify
+from flask import request
 from sqlalchemy.orm import scoped_session
 
 from miniature_spoon_app import SessionFactory
