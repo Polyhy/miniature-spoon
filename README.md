@@ -30,7 +30,12 @@ Simple link shortner using Flask and MariaDB
         |   |   |-- model.py
         |   |   |__ views.py
         |   |-- static  
+        |   |   |__ js
+        |   |       |__ index.js
         |   |-- templates  
+        |   |   |-- pages
+        |   |   |   |__ index.html
+        |   |   |__ 404.html
         |   |-- __init__.py  
         |   |-- config.py  
         |   |__ views.py  
