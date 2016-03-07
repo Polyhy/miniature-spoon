@@ -8,14 +8,17 @@ from model import Link
 
 
 def getOriginalUrl(token):
-    session = scoped_session(SessionFactory)
-    shortURL = token.encode()
-    s = session.query(Link).filter(Link.shortLink == shortURL)
-    if s.count() > 0:
-        link = s[0]
+    @cache.cached(timeout=60, key_prefix=config.REDIS_PREFIX)
+    def inner():
+        session = scoped_session(SessionFactory)
+        shortURL = token.encode()
+        s = session.query(Link).filter(Link.shortLink == shortURL)
+        if s.count() > 0:
+            return s[0]
+        return None
         # link.click = link.click + 1
-        session.commit()
-        session.remove()
+    link = inner()
+    if link is not None:
         return 200, link
     else:
         return 404, None

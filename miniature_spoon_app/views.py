@@ -15,7 +15,6 @@ def redirectShortURL(token):
     if status == 200:
         url = link.originalLink
         if url[0:7] == "http://" or url[0:8] == "https://":
-            print("asdfasdf")
             return redirect(url, 302)
         else:
             return redirect("http://www." + url, 302)
