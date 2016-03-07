@@ -111,3 +111,5 @@ HTTP status code 200
 1. inrest 할때마다 1씩 증가하는 link 테이블의 id를 62진법으로 변환  
 2. 각 자릿수마다 0~9이면 숫자 0~9, 10~35이면 대문자 A~Z, 36~61이면 소문자 a~z로 치환  
 3. 결과값의 길이가 6보다 작다면 길이가 6이 될때까지 0을 추가  
+
+![algorithm](https://github.com/Polyhy/miniature-spoon/blob/master/res_for_reademe/algorithm.png)
