@@ -18,7 +18,27 @@ Simple link shortner using Flask and MariaDB
 ---
 
 <br>
-## Project Architecture
+## Project Architecture  
+### Project Structure  
+~/miniature-spoon
+    |-- miniature_spoon_app
+    |     |-- link
+    |     |-- static
+    |     |-- templates
+    |     |-- __init__.py
+    |     |-- config.py
+    |     |__ views.py
+    |-- run
+    |     |__ miniature_spoon.py
+    |-- tests
+    |     |-- __init__.py
+    |     |-- link_test.py
+    |     |__ redis_test.py
+    |-- utils
+    |     |-- __init__.py
+    |     |__ convertDictToStr.py
+    |__ requirements.txt
+
 
 ### APIs
 #### POST /v1/link
