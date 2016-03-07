@@ -54,6 +54,7 @@ Simple link shortner using Flask and MariaDB
 
 ### APIs
 ##### POST /v1/link
+긴 URL을 이용해 짧은 URL을 생성하고 request_id와 생성 된 짧은 URL을 보낸다
 **Request Params**
 
 | name | type | description |
@@ -71,6 +72,7 @@ HTTP status code 201
 <br><br>
 
 ##### GET /v1/link
+짧은 URL을 생성할 때 받은 request_id를 이용해 짧은 URL을 보낸다
 **Request Params**
 
 | name | type | description |
@@ -87,6 +89,7 @@ HTTP status code 200
 <br><br>
 
 ##### DELETE /v1/link
+짧은 URL을 생성할 때 받은 request_id를 이용해 짧은 URL을 삭제한다
 **Request Params**
 
 | name | type | description |
@@ -98,6 +101,10 @@ HTTP status code 200
 | name | type | description |
 | --- | --- | --- |
 | status | string | 삭제 완료 메시지 (request {request_id} is deleted) |
+
+##### GET /<token>
+token 에 대응 되는 원본 URL로 redirect 시킨다
+<br><br>
 
 HTTP status code 200
 <br><br>
@@ -111,7 +118,6 @@ HTTP status code 200
 | createAt | DATETIME | row가 생성된 날짜 및 시간 |
 | originalLink | VARBINARY(255) | 줄이기 전 원래 link |
 | shortLink | VARBINARY(6) | 줄어든 short link {ServiceURL}/shortLink 형태로 사용 |
-| clink | INT(11) | short link의 방문 횟수를 저장 |
 
 <br><br>
 ### Link Shortner 알고리즘
