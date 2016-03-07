@@ -13,35 +13,36 @@ Simple link shortner using Flask and MariaDB
 `DATABASE_ADDR` = DB 주소<br>
 
 #### 실행
-` python run.py`
+` python run/miniature_spoon.py`
 
 ---
 
 <br>
 ## Project Architecture  
 ### Project Structure  
-~/miniature-spoon
-    |-- miniature_spoon_app
-    |     |-- link
-    |     |-- static
-    |     |-- templates
-    |     |-- __init__.py
-    |     |-- config.py
-    |     |__ views.py
-    |-- run
-    |     |__ miniature_spoon.py
-    |-- tests
-    |     |-- __init__.py
-    |     |-- link_test.py
-    |     |__ redis_test.py
-    |-- utils
-    |     |-- __init__.py
-    |     |__ convertDictToStr.py
-    |__ requirements.txt
+    ~/miniature-spoon  
+        |-- miniature_spoon_app  
+        |     |-- link  
+        |     |-- static  
+        |     |-- templates  
+        |     |-- __init__.py  
+        |     |-- config.py  
+        |     |__ views.py  
+        |-- run  
+        |     |__ miniature_spoon.py  
+        |-- tests  
+        |     |-- __init__.py  
+        |     |-- link_test.py  
+        |     |__ redis_test.py  
+        |-- utils  
+        |     |-- __init__.py  
+        |     |__ convertDictToStr.py  
+        |__ requirements.txt  
+
 
 
 ### APIs
-#### POST /v1/link
+##### POST /v1/link
 **Request Params**
 
 | name | type | description |
@@ -58,7 +59,7 @@ Simple link shortner using Flask and MariaDB
 HTTP status code 201
 <br><br>
 
-#### GET /v1/link
+##### GET /v1/link
 **Request Params**
 
 | name | type | description |
@@ -74,7 +75,7 @@ HTTP status code 201
 HTTP status code 200
 <br><br>
 
-#### DELETE /v1/link
+##### DELETE /v1/link
 **Request Params**
 
 | name | type | description |
@@ -90,7 +91,7 @@ HTTP status code 200
 HTTP status code 200
 <br><br>
 ### DataBase Schema
-#### link
+##### link
 원래 link와 줄어든 URL을 저장하는 테이블
 
 | column | type | description |
@@ -102,7 +103,7 @@ HTTP status code 200
 | clink | INT(11) | short link의 방문 횟수를 저장 |
 
 <br><br>
-### Link Shortner
+### Link Shortner 알고리즘
 `miniature_spoon_app/link/link_shortner.py`
 > 조건 : short_url_key는 6개의 알파벳 대소문자 혹은 숫자로 이루어 져 있어야 한다.  
 
