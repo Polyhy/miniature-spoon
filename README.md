@@ -102,7 +102,7 @@ HTTP status code 200
 | --- | --- | --- |
 | status | string | 삭제 완료 메시지 (request {request_id} is deleted) |
 
-##### GET /<token>
+##### GET /{token}
 token 에 대응 되는 원본 URL로 redirect 시킨다
 <br><br>
 
