@@ -2,6 +2,7 @@ from flask import request
 from sqlalchemy.orm import scoped_session
 
 from miniature_spoon_app import SessionFactory
+from miniature_spoon_app import cache, config
 from miniature_spoon_app.link.link_shortner import makeMiniature
 from model import Link
 
@@ -12,7 +13,7 @@ def getOriginalUrl(token):
     s = session.query(Link).filter(Link.shortLink == shortURL)
     if s.count() > 0:
         link = s[0]
-        link.click = link.click + 1
+        # link.click = link.click + 1
         session.commit()
         session.remove()
         return 200, link

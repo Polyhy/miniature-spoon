@@ -12,7 +12,7 @@ class Link(Base):
     createAt = Column(DateTime)
     originalLink = Column(VARBINARY(255))
     shortLink = Column(VARBINARY(6))
-    click = Column(Integer)
+    # click = Column(Integer)
 
     def __init__(self, link):
         try:
@@ -23,7 +23,7 @@ class Link(Base):
         self.createAt = datetime.now()
         self.originalLink = link
         self.shortLink = ""
-        self.click = 0
+        # self.click = 0
 
 
 event.listen(Link.__table__,
