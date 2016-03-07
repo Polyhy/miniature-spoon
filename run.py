@@ -1,3 +1,5 @@
 from miniature_spoon_app import app
+from config import HOST, PORT
 
-app.run(host='127.0.0.1', port=8080, debug=False)
+
+app.run(host=HOST, port=PORT, debug=False)

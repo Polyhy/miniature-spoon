@@ -1,9 +1,12 @@
-import os
-import miniature_spoon_app as miniatureSpoon
-import unittest
-import tempfile
-import jwt
 import json
+import tempfile
+import unittest
+
+import jwt
+import os
+
+import miniature_spoon_app as miniatureSpoon
+from miniature_spoon_app import redis_conn
 
 
 class LinkTest(unittest.TestCase):
@@ -16,6 +19,10 @@ class LinkTest(unittest.TestCase):
     def tearDown(self):
         os.close(self.db_fd)
         os.unlink(miniatureSpoon.app.config['DATABASE'])
+
+    def test_redis_connection(self):
+        redis_conn.set("test", 1)
+        print redis_conn.get("test")
 
     def test_shortURL(self):
         url = 'http://www.facebook.com'
