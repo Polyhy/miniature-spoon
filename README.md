@@ -1,5 +1,6 @@
 # Miniature Spoon
-Simple link shortner using Flask and MariaDB
+##### Simple link shortner using Flask, MariaDB and Redis
+##### pypy-4.0.1
 
 #### Installing
 필요한 패키지 설치
@@ -13,7 +14,7 @@ Simple link shortner using Flask and MariaDB
 `DATABASE_ADDR` = DB 주소<br>
 
 #### 실행
-` python run/miniature_spoon.py`
+`run.py`
 
 ---
 
@@ -39,8 +40,6 @@ Simple link shortner using Flask and MariaDB
         |   |-- __init__.py  
         |   |-- config.py  
         |   |__ views.py  
-        |-- run  
-        |   |__ miniature_spoon.py  
         |-- tests  
         |   |-- __init__.py  
         |   |-- link_test.py  
@@ -48,12 +47,14 @@ Simple link shortner using Flask and MariaDB
         |-- utils  
         |   |-- __init__.py  
         |   |__ convertDictToStr.py  
-        |__ requirements.txt  
+        |-- requirements.txt  
+        |__ run.py
 
 
 
 ### APIs
 ##### POST /v1/link
+긴 URL을 이용해 짧은 URL을 생성하고 request_id와 생성 된 짧은 URL을 보낸다
 **Request Params**
 
 | name | type | description |
@@ -71,6 +72,7 @@ HTTP status code 201
 <br><br>
 
 ##### GET /v1/link
+짧은 URL을 생성할 때 받은 request_id를 이용해 짧은 URL을 보낸다
 **Request Params**
 
 | name | type | description |
@@ -87,6 +89,7 @@ HTTP status code 200
 <br><br>
 
 ##### DELETE /v1/link
+짧은 URL을 생성할 때 받은 request_id를 이용해 짧은 URL을 삭제한다
 **Request Params**
 
 | name | type | description |
@@ -98,6 +101,10 @@ HTTP status code 200
 | name | type | description |
 | --- | --- | --- |
 | status | string | 삭제 완료 메시지 (request {request_id} is deleted) |
+
+##### GET /{token}
+token 에 대응 되는 원본 URL로 redirect 시킨다
+<br><br>
 
 HTTP status code 200
 <br><br>
@@ -111,7 +118,6 @@ HTTP status code 200
 | createAt | DATETIME | row가 생성된 날짜 및 시간 |
 | originalLink | VARBINARY(255) | 줄이기 전 원래 link |
 | shortLink | VARBINARY(6) | 줄어든 short link {ServiceURL}/shortLink 형태로 사용 |
-| clink | INT(11) | short link의 방문 횟수를 저장 |
 
 <br><br>
 ### Link Shortner 알고리즘
@@ -123,4 +129,4 @@ HTTP status code 200
 2. 각 자릿수마다 0~9이면 숫자 0~9, 10~35이면 대문자 A~Z, 36~61이면 소문자 a~z로 치환  
 3. 결과값의 길이가 6보다 작다면 길이가 6이 될때까지 0을 추가  
 
-![](https://drive.google.com/file/d/0Bzs3yizLQxnsMGpESmZOaXNHazg/view?usp=sharing)
+![](https://github.com/Polyhy/miniature-spoon/blob/master/algorithm.png)
