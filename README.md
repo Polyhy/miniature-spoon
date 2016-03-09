@@ -1,5 +1,5 @@
 # Miniature Spoon
-Simple link shortner using Flask and MariaDB
+Simple link shortner using Flask, MariaDB and Redis
 
 #### Installing
 필요한 패키지 설치
