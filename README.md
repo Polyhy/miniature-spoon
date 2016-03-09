@@ -1,5 +1,6 @@
 # Miniature Spoon
-Simple link shortner using Flask, MariaDB and Redis
+##### Simple link shortner using Flask, MariaDB and Redis
+##### pypy-4.0.1
 
 #### Installing
 필요한 패키지 설치
@@ -13,7 +14,7 @@ Simple link shortner using Flask, MariaDB and Redis
 `DATABASE_ADDR` = DB 주소<br>
 
 #### 실행
-` python run/miniature_spoon.py`
+`run.py`
 
 ---
 
@@ -39,8 +40,6 @@ Simple link shortner using Flask, MariaDB and Redis
         |   |-- __init__.py  
         |   |-- config.py  
         |   |__ views.py  
-        |-- run  
-        |   |__ miniature_spoon.py  
         |-- tests  
         |   |-- __init__.py  
         |   |-- link_test.py  
@@ -48,7 +47,8 @@ Simple link shortner using Flask, MariaDB and Redis
         |-- utils  
         |   |-- __init__.py  
         |   |__ convertDictToStr.py  
-        |__ requirements.txt  
+        |-- requirements.txt  
+        |__ run.py
 
 
 
