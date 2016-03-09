@@ -20,6 +20,19 @@
 
 <br>
 ## Project Architecture  
+### Software Abstraction
+![](https://github.com/Polyhy/miniature-spoon/blob/master/sw.png)
+Flask를 이용해 Rest API서버를 구성하였다.  
+DB로 MariaDB를 사용하였고 SQLAlchemy를 사용했다.  
+짧아진 url을 다시 긴 url로 리다이렉트 하는 시간을 줄이기 위해 Redis를 이용해 캐싱한다.  
+짧아진 url로 접속시 먼저 Redis 서버에 토큰을 키로 하는 값을 검색 한다.  
+검색 후 결과가 있으면 검색된 원본 URL로 리다이렉트 시키고,  
+결과가 없으면 DB에서 검색 후 검색 된 원본 URL을 캐싱하고 검색된 원본 URL로 리다이렉트 한다.  
+캐싱된 원본 URL은 한 시간 후 삭제된다.  
+클라이언트에서 서버로 데이터를 보낼 때는 json web token을 이용해 암호화해 전송하고 서버에서는 이것을 decode해서 처리한다.
+
+
+## Project Architecture  
 ### Project Structure  
     ~/miniature-spoon  
         |-- miniature_spoon_app  
@@ -49,8 +62,6 @@
         |   |__ convertDictToStr.py  
         |-- requirements.txt  
         |__ run.py
-
-
 
 ### APIs
 ##### POST /v1/link
